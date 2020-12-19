@@ -1,4 +1,12 @@
-﻿namespace LinearDataStructures
+﻿using System.Reflection.PortableExecutable;
+using System.Net;
+using System.Diagnostics;
+using System.Threading;
+using System.Net.Http.Headers;
+using System.Reflection.Metadata.Ecma335;
+using System.Globalization;
+using System;
+namespace LinearDataStructures
 {
 
     public class LinkedList
@@ -126,6 +134,26 @@
             last = first;
             last.Next = null;
             first = previous;
+        }
+
+        public int GetKthFromTheEnd(int k)
+        {
+            if(IsEmpty())
+                throw new SystemException();
+            var head = first;
+            var tail = first;
+            for (var i = 0; i < k-1; i++)
+            {
+                tail = tail.Next;
+                if(tail == null)
+                    throw new SystemException();
+            }
+            while(tail != last)
+            {
+                head = head.Next;
+                tail = tail.Next;
+            }
+            return head.Value;
         }
 
 
