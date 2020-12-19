@@ -1,4 +1,6 @@
-﻿using System.Reflection.PortableExecutable;
+﻿using System.Transactions;
+using System.ComponentModel.Design;
+using System.Reflection.PortableExecutable;
 using System.Net;
 using System.Diagnostics;
 using System.Threading;
@@ -154,6 +156,24 @@ namespace LinearDataStructures
                 tail = tail.Next;
             }
             return head.Value;
+        }
+
+        public void PrintMiddle()
+        {
+            var start = first;
+            var end = first;
+
+            while(end!=last && end.Next != last)
+            {
+                end = end.Next.Next;
+                start = start.Next;
+            }
+            if(end == last)
+                System.Console.WriteLine(start.Value);
+            else
+                System.Console.WriteLine($"{a.Value}, {a.Next.Value}");
+                
+            
         }
 
 
